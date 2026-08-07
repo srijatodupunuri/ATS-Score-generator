@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Job Descriptions</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="blur-circle circle1"></div>
+    <div class="blur-circle circle2"></div>
+
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <div class="sidebar-logo">ATS Recruit</div>
+
+        <ul class="sidebar-menu">
+          <li onclick="window.location = '/dashboard'">🏠 Dashboard</li>
+
+          <li class="active-menu">📄 Job Descriptions</li>
+
+          <li onclick="window.location = '/resume-screening'">
+            📂 Resume Screening
+          </li>
+
+          <li onclick="window.location = '/candidate-ranking'">
+            ⭐ Candidate Ranking
+          </li>
+
+          <li onclick="window.location = '/candidate-profiles'">
+            👥 Candidate Profiles
+          </li>
+
+          <li onclick="window.location = '/review-required'">
+            ⚠ Review Required
+          </li>
+
+          <li onclick="window.location = '/analytics'">📊 Analytics</li>
+
+          <li onclick="window.location = '/ai-insights'">🤖 AI Insights</li>
+
+          <li onclick="window.location = '/settings'">⚙ Settings</li>
+        </ul>
+      </aside>
+
+      <main class="dashboard-content">
+        <h1>📄 Job Description Library</h1>
+
+        <br />
+
+        <input
+          type="text"
+          id="jdSearch"
+          class="search-box"
+          placeholder="Search Job Description..."
+        />
+
+        <br /><br />
+
+        <div id="jdContainer"></div>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/job_descriptions.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <title>AI Insights</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <div class="sidebar-logo">ATS Recruit</div>
+        <ul class="sidebar-menu">
+          <li onclick="window.location = '/dashboard'">🏠 Dashboard</li>
+
+          <li onclick="window.location = '/job-descriptions'">
+            📄 Job Descriptions
+          </li>
+
+          <li onclick="window.location = '/resume-screening'">
+            📂 Resume Screening
+          </li>
+
+          <li onclick="window.location = '/candidate-ranking'">
+            ⭐ Candidate Ranking
+          </li>
+
+          <li onclick="window.location = '/candidate-profiles'">
+            👥 Candidate Profiles
+          </li>
+
+          <li onclick="window.location = '/review-required'">
+            ⚠ Review Required
+          </li>
+
+          <li onclick="window.location = '/analytics'">📊 Analytics</li>
+
+          <li onclick="window.location = '/settings'">⚙ Settings</li>
+        </ul>
+      </aside>
+
+      <main class="dashboard-content">
+        <h1>🤖 ATS AI Recruiter Assistant</h1>
+
+        <div class="glass-card ai-chat-card">
+          <div id="chatMessages">
+            <div class="ai-message">
+              <br>Hello Recruiter 👋 I can help you analyze candidates, ATS scores,
+              rankings, skill gaps, recruitment summaries and interview
+              recommendations. 
+              Try asking:</br>
+              <br>• Who should I interview first?</br>
+              <br>• Who is the best candidate? </br>
+              <br>• Show Linux candidates </br>
+              <br>• Show Python candidates </br>
+              <br>• Linux and Python candidates </br>
+              <br>• Show recruitment summary </br>
+              <br>• What are the top missing skills?</br>
+
+              
+            </div>
+          </div>
+
+          <div class="chat-input-row">
+            <input id="chatQuestion" type="text" placeholder="Ask ATS AI..." />
+
+            <button onclick="askATSAI()">Ask</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/ai_insights.js') }}"></script>
+  </body>
+</html>

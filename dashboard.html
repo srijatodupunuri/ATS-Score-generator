@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATS Recruitment Assistant</title>
+  </head>
+  <body>
+    <div class="blur-circle circle1"></div>
+    <div class="blur-circle circle2"></div>
+    <nav>
+      <div class="logo">ATS Recruit</div>
+
+      <ul>
+        <li><a href="/" class="nav-btn">Home</a></li>
+
+        <li><a href="/analysis" class="nav-btn">Analysis</a></li>
+
+        <li><a href="/dashboard" class="nav-btn">Dashboard</a></li>
+
+        <li><a href="/reports" class="nav-btn">Reports</a></li>
+
+        <li><a href="/about" class="nav-btn">About</a></li>
+      </ul>
+      <a href="/login" class="nav-btn login-btn">HR Login</a>
+    </nav>
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <ul class="sidebar-menu">
+          <li onclick="showDashboard()">🏠 Dashboard</li>
+
+          <li onclick="window.location = '/job-descriptions'">
+            📄 Job Descriptions
+          </li>
+
+          <li onclick="window.location = '/resume-screening'">
+            📂 Resume Screening
+          </li>
+
+          <li onclick="window.location = '/candidate-ranking'">
+            ⭐ Candidate Ranking
+          </li>
+
+          <li onclick="window.location = '/candidate-profiles'">
+            👥 Candidate Profiles
+          </li>
+
+          <li onclick="window.location = '/review-required'">
+            ⚠ Review Required
+          </li>
+
+          <li onclick="window.location = '/analytics'">📊 Analytics</li>
+
+          <li onclick="window.location = '/settings'">⚙ Settings</li>
+        </ul>
+      </aside>
+
+      <main class="dashboard-content">
+        <div class="dashboard-topbar">
+          <h2>Welcome Recruiter</h2>
+
+          <div class="topbar-actions">
+            <div class="ai-insights-icon">
+              <button onclick="window.location = '/ai-insights'">
+                🤖Ask me
+              </button>
+            </div>
+            <div class="notification-icon">🔔</div>
+
+            <button id="darkModeBtn">🌙</button>
+
+            <div class="profile-avatar">HR</div>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <h3>Total Candidates</h3>
+            <h1 id="totalCandidates">0</h1>
+          </div>
+
+          <div class="metric-card">
+            <h3>Accepted</h3>
+            <h1 id="acceptedCount">0</h1>
+          </div>
+
+          <div class="metric-card">
+            <h3>Rejected</h3>
+            <h1 id="rejectedCount">0</h1>
+          </div>
+
+          <div class="metric-card">
+            <h3>Review Required</h3>
+            <h1 id="reviewCount">0</h1>
+          </div>
+
+          <div class="metric-card">
+            <h3>Average ATS</h3>
+            <h1 id="averageATS">0%</h1>
+          </div>
+
+          <div class="glass-card top-candidate-card">
+            <h3>🏆 Top Candidate</h3>
+
+            <div id="topCandidate">Waiting for analysis...</div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/jd.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/resume.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/analyze.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

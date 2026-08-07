@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Candidate Ranking</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <div class="sidebar-logo">ATS Recruit</div>
+        <ul class="sidebar-menu">
+          <li onclick="window.location = '/dashboard'">🏠 Dashboard</li>
+
+          <li onclick="window.location = '/job-descriptions'">
+            📄 Job Descriptions
+          </li>
+
+          <li onclick="window.location = '/resume-screening'">
+            📂 Resume Screening
+          </li>
+
+          <li
+            class="active-menu"
+            onclick="window.location = '/candidate-ranking'"
+          >
+            ⭐ Candidate Ranking
+          </li>
+
+          <li onclick="window.location = '/candidate-profiles'">
+            👥 Candidate Profiles
+          </li>
+
+          <li onclick="window.location = '/review-required'">
+            ⚠ Review Required
+          </li>
+
+          <li onclick="window.location = '/analytics'">📊 Analytics</li>
+
+          <li onclick="window.location = '/ai-insights'">🤖 AI Insights</li>
+
+          <li onclick="window.location = '/settings'">⚙ Settings</li>
+        </ul>
+      </aside>
+
+      <main class="dashboard-content">
+        <h1>⭐ Candidate Rankings</h1>
+
+        <div id="rankingContainer"></div>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/candidate_ranking.js') }}"></script>
+  </body>
+</html>

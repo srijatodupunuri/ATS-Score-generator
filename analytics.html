@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ATS Analytics</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <div class="blur-circle circle1"></div>
+    <div class="blur-circle circle2"></div>
+
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <div class="sidebar-logo">ATS Recruit</div>
+        <ul class="sidebar-menu">
+          <li onclick="window.location = '/dashboard'">🏠 Dashboard</li>
+
+          <li onclick="window.location = '/job-descriptions'">
+            📄 Job Descriptions
+          </li>
+
+          <li onclick="window.location = '/resume-screening'">
+            📂 Resume Screening
+          </li>
+
+          <li onclick="window.location = '/candidate-ranking'">
+            ⭐ Candidate Ranking
+          </li>
+
+          <li onclick="window.location = '/candidate-profiles'">
+            👥 Candidate Profiles
+          </li>
+
+          <li onclick="window.location = '/review-required'">
+            ⚠ Review Required
+          </li>
+
+          <li class="active-menu" onclick="window.location = '/analytics'">
+            📊 Analytics
+          </li>
+
+          <li onclick="window.location = '/ai-insights'">🤖 AI Insights</li>
+
+          <li onclick="window.location = '/settings'">⚙ Settings</li>
+        </ul>
+      </aside>
+      <main class="dashboard-content">
+        <h1>📊 ATS Analytics Dashboard</h1>
+
+        <br />
+
+        <div class="glass-card">
+          <h3>ATS Score Distribution</h3>
+
+          <canvas id="analyticsChart" height="120"></canvas>
+        </div>
+
+        <br />
+
+        <div class="glass-card">
+          <h3>Analytics Summary</h3>
+
+          <div id="analyticsSummary">Loading analytics...</div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      async function loadAnalytics() {
+        try {
+          const response = await fetch("/api/dashboard");
+
+          const data = await response.json();
+
+          const ctx = document
+            .getElementById("analyticsChart")
+            .getContext("2d");
+
+          new Chart(ctx, {
+            type: "bar",
+
+            data: {
+              labels: data.scores.map((_, index) => `Candidate ${index + 1}`),
+
+              datasets: [
+                {
+                  label: "ATS Score",
+
+                  data: data.scores,
+
+                  backgroundColor: [
+                    "#3B82F6",
+                    "#22C55E",
+                    "#F59E0B",
+                    "#EF4444",
+                    "#8B5CF6",
+                  ],
+                },
+              ],
+            },
+
+            options: {
+              responsive: true,
+
+              plugins: {
+                legend: {
+                  display: true,
+                },
+              },
+
+              scales: {
+                y: {
+                  beginAtZero: true,
+
+                  max: 100,
+                },
+              },
+            },
+          });
+
+          document.getElementById("analyticsSummary").innerHTML = `
+
+                    <p>
+                        Total Candidates:
+                        <strong>${data.total}</strong>
+                    </p>
+
+                    <p>
+                        Accepted:
+                        <strong>${data.accepted}</strong>
+                    </p>
+
+                    <p>
+                        Rejected:
+                        <strong>${data.rejected}</strong>
+                    </p>
+
+                    <p>
+                        Review Required:
+                        <strong>${data.review}</strong>
+                    </p>
+
+                    <p>
+                        Average ATS:
+                        <strong>${data.average}%</strong>
+                    </p>
+
+                `;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      loadAnalytics();
+    </script>
+  </body>
+</html>

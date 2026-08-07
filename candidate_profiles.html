@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Candidate Profiles</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <div class="sidebar-logo">ATS Recruit</div>
+        <ul class="sidebar-menu">
+          <li onclick="window.location = '/dashboard'">🏠 Dashboard</li>
+
+          <li onclick="window.location = '/job-descriptions'">
+            📄 Job Descriptions
+          </li>
+
+          <li onclick="window.location = '/resume-screening'">
+            📂 Resume Screening
+          </li>
+
+          <li onclick="window.location = '/candidate-ranking'">
+            ⭐ Candidate Ranking
+          </li>
+
+          <li
+            class="active-menu"
+            onclick="window.location = '/candidate-profiles'"
+          >
+            👥 Candidate Profiles
+          </li>
+
+          <li onclick="window.location = '/review-required'">
+            ⚠ Review Required
+          </li>
+
+          <li onclick="window.location = '/analytics'">📊 Analytics</li>
+
+          <li onclick="window.location = '/ai-insights'">🤖 AI Insights</li>
+
+          <li onclick="window.location = '/settings'">⚙ Settings</li>
+        </ul>
+      </aside>
+
+      <main class="dashboard-content">
+        <h1>👥 Candidate Profiles</h1>
+
+        <input
+          type="text"
+          id="candidateSearch"
+          class="search-box"
+          placeholder="Search Candidate..."
+        />
+
+        <br /><br />
+
+        <div id="profilesContainer"></div>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/candidate_profiles.js') }}"></script>
+  </body>
+</html>

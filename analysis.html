@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATS Recruitment Assistant</title>
+  </head>
+  <body>
+    <div class="blur-circle circle1"></div>
+    <div class="blur-circle circle2"></div>
+    <nav>
+      <div class="logo">ATS Recruit</div>
+
+      <ul>
+        <li><a href="/" class="nav-btn">Home</a></li>
+
+        <li><a href="/analysis" class="nav-btn">Analysis</a></li>
+
+        <li><a href="/dashboard" class="nav-btn">Dashboard</a></li>
+
+        <li><a href="/reports" class="nav-btn">Reports</a></li>
+
+        <li><a href="/about" class="nav-btn">About</a></li>
+      </ul>
+      <a href="/loginnav-btn login-btn">HR Login</a>
+    </nav>
+    <section class="workspace">
+      <div class="workspace-container">
+        <div class="workspace-grid">
+          <div class="jd-module glass-card">
+            <!-- Header -->
+
+            <div class="jd-header">
+              <h3>
+                <i class="fa-solid fa-file-lines"></i>
+                Job Description
+              </h3>
+
+              <p>Paste the Job Description or upload a supported file.</p>
+            </div>
+
+            <div class="jd-method-selector">
+              <label>
+                <input
+                  type="radio"
+                  name="jdMethod"
+                  value="paste"
+                  id="pasteOption"
+                  checked
+                />
+
+                Paste JD
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="jdMethod"
+                  value="upload"
+                  id="uploadOption"
+                />
+
+                Upload JD
+              </label>
+            </div>
+
+            <div id="pasteContainer">
+              <textarea
+                id="jdTextarea"
+                placeholder="Paste the complete Job Description here..."
+              ></textarea>
+
+              <div class="jd-counter">
+                <span>
+                  Words :
+                  <strong id="wordCount">0</strong>
+                </span>
+
+                <span>
+                  Characters :
+                  <strong id="charCount">0</strong>
+                </span>
+              </div>
+
+              <div class="jd-actions">
+                <button id="clipboardButton">📋 Paste Clipboard</button>
+                <button id="clearJDButton">🗑 Clear</button>
+                <button type="button" id="uploadJDButton" class="upload-jd-btn">
+                  Upload Job Description
+                </button>
+              </div>
+            </div>
+
+            <!-- Upload Area -->
+
+            <div id="uploadContainer">
+              <div class="jd-upload-box" id="jdUploadZone">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                <h4>Drag & Drop Job Description</h4>
+
+                <p>PDF • DOCX • TXT</p>
+
+                <button type="button" id="browseJDButton" class="browse-jd-btn">
+                  Browse JD
+                </button>
+
+                <input
+                  type="file"
+                  id="jdFileInput"
+                  accept=".pdf,.docx,.txt"
+                  hidden
+                />
+              </div>
+
+              <div class="jd-file-card">
+                <div class="jd-file-info">
+                  <div class="jd-file-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                  </div>
+
+                  <div class="jd-file-text">
+                    <span id="jdFileName"> No Job Description Selected </span>
+
+                    <small id="jdFileDetails"> Waiting for upload... </small>
+                  </div>
+                </div>
+
+                <button id="removeJDButton">Remove</button>
+              </div>
+              <div class="upload-progress">
+                <div class="progress-fill" id="jdProgressFill"></div>
+              </div>
+
+              <div class="upload-complete" id="uploadComplete">
+                <i class="fa-solid fa-circle-check"></i>
+
+                Ready for Analysis
+                <button
+                  type="button"
+                  id="uploadJDPButton"
+                  class="upload-jdp-btn"
+                >
+                  Upload Job Description
+                </button>
+              </div>
+            </div>
+
+            <!-- Status -->
+
+            <div id="jdStatus">Waiting for Job Description...</div>
+          </div>
+          <div class="resume-module glass-card">
+            <!-- Header -->
+
+            <div class="resume-header">
+              <h3>
+                <i class="fa-solid fa-file-arrow-up"></i>
+                Candidate Resumes
+              </h3>
+
+              <p>Upload one or multiple resumes for ATS screening.</p>
+            </div>
+
+            <!-- Upload Area -->
+
+            <div class="resume-upload-box" id="resumeUploadZone">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+
+              <h4>Drag & Drop Candidate Resumes</h4>
+
+              <p>PDF • DOCX • TXT</p>
+
+              <button id="browseResumeButton" class="browse-resume-btn">
+                Browse Resume
+              </button>
+
+              <input
+                type="file"
+                id="resumeFileInput"
+                accept=".pdf,.docx,.txt"
+                multiple
+                hidden
+              />
+            </div>
+
+            <!-- Resume List -->
+
+            <div class="resume-list-card">
+              <h4>Selected Resumes</h4>
+
+              <div id="resumeList">
+                <p id="resumePlaceholder" class="resume-placeholder">
+                  No resumes selected.
+                </p>
+              </div>
+            </div>
+
+            <!-- Upload Progress -->
+
+            <div class="upload-progress">
+              <div class="progress-fill" id="resumeProgressFill"></div>
+            </div>
+
+            <div class="resume-actions">
+              <button id="uploadResumeButton" class="upload-resume-btn">
+                Upload Selected Resumes
+              </button>
+            </div>
+
+            <div id="resumeStatus">Waiting for resume upload...</div>
+          </div>
+          <div class="analyze-section glass-card">
+            <h2>🚀 Ready For AI-Powered Candidate Screening?</h2>
+
+            <p>
+              Upload a Job Description and candidate resumes. Our ATS engine
+              will analyze skills, experience, education, debugging expertise,
+              project relevance, and generate ranked recommendations instantly.
+            </p>
+
+            <button class="analyze-btn">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+              Analyze Candidates
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="{{ url_for('static', filename='js/jd.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/resume.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/analyze.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

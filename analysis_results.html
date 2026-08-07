@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Analysis Results</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="dashboard-content">
+      <div class="results-header">
+        <button onclick="goBack()" class="back-btn">← Back To Analysis</button>
+
+        <h1>ATS Analysis Results</h1>
+      </div>
+
+      <div id="resultsContainer">Loading Results...</div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/analysis_results.js') }}"></script>
+  </body>
+</html>
